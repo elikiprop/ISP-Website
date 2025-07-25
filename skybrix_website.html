@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyBrix ISP LTD - High-Speed Internet Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .page {
+            display: none;
+            min-height: calc(100vh - 160px);
+            padding: 2rem 0;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234285f4" width="1200" height="600"/><path fill="%236ab7ff" d="M0,320L48,330.7C96,341,192,363,288,346.7C384,331,480,277,576,272C672,267,768,309,864,320C960,331,1056,309,1152,293.3C1248,277,1344,267,1392,261.3L1440,256L1440,600L1392,600C1344,600,1248,600,1152,600C1056,600,960,600,864,600C768,600,672,600,576,600C480,600,384,600,288,600C192,600,96,600,48,600L0,600Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #ffd700;
+        }
+
+        .btn-secondary:hover {
+            background: #ffd700;
+            color: #1e3c72;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #2a5298;
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #ffd700;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .features li i {
+            color: #28a745;
+            margin-right: 0.5rem;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #1e3c72;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        /* Reviews */
+        .reviews-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2a5298;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            margin-left: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        /* Payment Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-wifi"></i> SkyBrix ISP
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('about')">About</a></li>
+                <li><a onclick="showPage('services')">Services</a></li>
+                <li><a onclick="showPage('packages')">Packages</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+                <li><a onclick="showPage('reviews')">Reviews</a></li>
+                <li><a onclick="showPage('support')">Support</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <div class="container">
+                    <h1>Lightning-Fast Internet</h1>
+                    <p>Experience the future of connectivity with SkyBrix ISP. Reliable, fast, and affordable internet solutions for homes and businesses across Kenya.</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn" onclick="showPage('packages')">
+                            <i class="fas fa-rocket"></i> View Packages
+                        </a>
+                        <a href="#" class="btn btn-secondary" onclick="showPage('contact')">
+                            <i class="fas fa-phone"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Why Choose SkyBrix?</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Ultra-Fast Speeds</h3>
+                            <p>Up to 1Gbps download speeds for seamless streaming, gaming, and working from home.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>99.9% Uptime</h3>
+                            <p>Reliable connection you can count on with enterprise-grade infrastructure.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>24/7 Support</h3>
+                            <p>Round-the-clock technical support from our expert team.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">About SkyBrix ISP</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Founded in 2015, SkyBrix ISP LTD has been at the forefront of providing high-quality internet services to communities across Kenya. We believe that fast, reliable internet is not a luxury but a necessity in today's connected world.</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0;">
+                            <div>
+                                <h3 style="color: #1e3c72; margin-bottom: 1rem;">Our Mission</h3>
+                                <p>To bridge the digital divide by providing affordable, high-speed internet access to every home and business in Kenya.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: #1e3c72; margin-bottom: 1rem;">Our Vision</h3>
+                                <p>To be Kenya's leading internet service provider, known for innovation, reliability, and exceptional customer service.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 3rem;">
+                            <h3 style="color: #1e3c72; margin-bottom: 1rem;">Our Achievements</h3>
+                            <ul style="list-style: none; text-align: left;">
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #28a745; margin-right: 1rem;"></i>50,000+ Happy Customers</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #28a745; margin-right: 1rem;"></i>Coverage in 15+ Counties</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #28a745; margin-right: 1rem;"></i>Award for Best ISP Kenya 2023</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: #28a745; margin-right: 1rem;"></i>99.9% Customer Satisfaction Rate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Services Page -->
+        <div id="services" class="page">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Our Services</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>Home Internet</h3>
+                            <p>High-speed fiber and wireless internet for residential customers. Perfect for streaming, gaming, and remote work.</p>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> Up to 1Gbps speeds</li>
+                                <li><i class="fas fa-check"></i> Unlimited data</li>
+                                <li><i class="fas fa-check"></i> Free Wi-Fi router</li>
+                                <li><i class="fas fa-check"></i> 24/7 support</li>
+                            </ul>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3>Business Internet</h3>
+                            <p>Dedicated business connections with guaranteed speeds and SLA. Scale your business with reliable connectivity.</p>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> Dedicated bandwidth</li>
+                                <li><i class="fas fa-check"></i> Static IP addresses</li>
+                                <li><i class="fas fa-check"></i> 99.9% uptime SLA</li>
+                                <li><i class="fas fa-check"></i> Priority support</li>
+                            </ul>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Network Security</h3>
+                            <p>Comprehensive security solutions to protect your network from threats and ensure safe browsing.</p>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> Firewall protection</li>
+                                <li><i class="fas fa-check"></i> DDoS mitigation</li>
+                                <li><i class="fas fa-check"></i> Content filtering</li>
+                                <li><i class="fas fa-check"></i> VPN services</li>
+                            </ul>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3>Installation & Support</h3>
+                            <p>Professional installation and ongoing technical support to keep you connected always.</p>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> Free installation</li>
+                                <li><i class="fas fa-check"></i> Equipment setup</li>
+                                <li><i class="fas fa-check"></i> On-site support</li>
+                                <li><i class="fas fa-check"></i> Remote troubleshooting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Packages Page -->
+        <div id="packages" class="page">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Internet Packages</h2>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Basic</h3>
+                            <div class="price">KSh 2,500<span>/month</span></div>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> 10 Mbps Speed</li>
+                                <li><i class="fas fa-check"></i> Unlimited Data</li>
+                                <li><i class="fas fa-check"></i> Free Router</li>
+                                <li><i class="fas fa-check"></i> Email Support</li>
+                                <li><i class="fas fa-check"></i> Free Installation</li>
+                            </ul>
+                            <button class="btn" onclick="selectPackage('Basic', 2500)">Choose Plan</button>
+                        </div>
+                        <div class="pricing-card featured">
+                            <h3>Standard</h3>
+                            <div class="price">KSh 4,000<span>/month</span></div>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> 50 Mbps Speed</li>
+                                <li><i class="fas fa-check"></i> Unlimited Data</li>
+                                <li><i class="fas fa-check"></i> Free Wi-Fi Router</li>
+                                <li><i class="fas fa-check"></i> 24/7 Phone Support</li>
+                                <li><i class="fas fa-check"></i> Free Installation</li>
+                                <li><i class="fas fa-check"></i> Basic Security</li>
+                            </ul>
+                            <button class="btn" onclick="selectPackage('Standard', 4000)">Choose Plan</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Premium</h3>
+                            <div class="price">KSh 6,500<span>/month</span></div>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> 100 Mbps Speed</li>
+                                <li><i class="fas fa-check"></i> Unlimited Data</li>
+                                <li><i class="fas fa-check"></i> Advanced Wi-Fi Router</li>
+                                <li><i class="fas fa-check"></i> Priority Support</li>
+                                <li><i class="fas fa-check"></i> Free Installation</li>
+                                <li><i class="fas fa-check"></i> Advanced Security</li>
+                                <li><i class="fas fa-check"></i> Static IP</li>
+                            </ul>
+                            <button class="btn" onclick="selectPackage('Premium', 6500)">Choose Plan</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Ultra</h3>
+                            <div class="price">KSh 10,000<span>/month</span></div>
+                            <ul class="features">
+                                <li><i class="fas fa-check"></i> 500 Mbps Speed</li>
+                                <li><i class="fas fa-check"></i> Unlimited Data</li>
+                                <li><i class="fas fa-check"></i> Enterprise Router</li>
+                                <li><i class="fas fa-check"></i> Dedicated Support</li>
+                                <li><i class="fas fa-check"></i> Free Installation</li>
+                                <li><i class="fas fa-check"></i> Enterprise Security</li>
+                                <li><i class="fas fa-check"></i> Multiple Static IPs</li>
+                                <li><i class="fas fa-check"></i> SLA Guarantee</li>
+                            </ul>
+                            <button class="btn" onclick="selectPackage('Ultra', 10000)">Choose Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Contact Us</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                        <div>
+                            <div class="form-container">
+                                <h3 style="margin-bottom: 1.5rem; color: #1e3c72;">Send us a Message</h3>
+                                <form id="contactForm">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <select id="subject" name="subject">
+                                            <option value="general">General Inquiry</option>
+                                            <option value="support">Technical Support</option>
+                                            <option value="billing">Billing Question</option>
+                                            <option value="complaint">Complaint</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Message</label>
+                                        <textarea id="message" name="message" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn">
+                                        <i class="fas fa-paper-plane"></i> Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                                <h3 style="margin-bottom: 1.5rem; color: #1e3c72;">Get in Touch</h3>
+                                <div style="margin-bottom: 2rem;">
+                                    <h4><i class="fas fa-map-marker-alt" style="color: #2a5298; margin-right: 0.5rem;"></i> Address</h4>
+                                    <p>SkyBrix Tower, 5th Floor<br>Moi Avenue, Nairobi<br>Kenya</p>
+                                </div>
+                                <div style="margin-bottom: 2rem;">
+                                    <h4><i class="fas fa-phone" style="color: #2a5298; margin-right: 0.5rem;"></i> Phone</h4>
+                                    <p>+254 700 123 456<br>+254 20 123 4567</p>
+                                </div>
+                                <div style="margin-bottom: 2rem;">
+                                    <h4><i class="fas fa-envelope" style="color: #2a5298; margin-right: 0.5rem;"></i> Email</h4>
+                                    <p>info@skybrixisp.co.ke<br>support@skybrixisp.co.ke</p>
+                                </div>
+                                <div style="margin-bottom: 2rem;">
+                                    <h4><i class="fas fa-clock" style="color: #2a5298; margin-right: 0.5rem;"></i> Business Hours</h4>
+                                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 4:00 PM<br>Sunday: Emergency Support Only</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Reviews Page -->
+        <div id="reviews" class="page">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Customer Reviews</h2>
+                    <div class="reviews-container">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="review-avatar">JM</div>
+                                <div>
+                                    <h4>John Mwangi</h4>
+                                    <p style="color: #666; font-size: 0.9rem;">Verified Customer</p>
+                                </div>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p>"Excellent service! The internet speed is consistent and their customer support is very responsive. I've been using SkyBrix for 2 years now and never had any major issues."</p>
+                            <small style="color: #666;">Posted 2 days ago</small>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="review-avatar">SA</div>
+                                <div>
+                                    <h4>Sarah Akinyi</h4>
+                                    <p style="color: #666; font-size: 0.9rem;">Business Customer</p>
+                                </div>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p>"Great for my small business. The upload speeds are fantastic for video calls and file sharing. Installation was professional and quick."</p>
+                            <small style="color: #666;">Posted 1 week ago</small>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="review-avatar">DK</div>
+                                <div>
+                                    <h4>David Kimani</h4>
+                                    <p style="color: #666; font-size: 0.9rem;">Home User</p>
+                                </div>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p>"Good value for money. The standard package works well for streaming and working from home. Only minor downtime once in 6 months."</p>
+                            <small style="color: #666;">Posted 2 weeks ago</small>
+                        </div>
+
+                        <div class="form-container mt-3">
+                            <h3 style="margin-bottom: 1.5rem; color: #1e3c72;">Leave a Review</h3>
+                            <form id="reviewForm">
+                                <div class="form-group">
+                                    <label for="reviewName">Your Name</label>
+                                    <input type="text" id="reviewName" name="reviewName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reviewEmail">Email Address</label>
+                                    <input type="email" id="reviewEmail" name="reviewEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rating">Rating</label>
+                                    <select id="rating" name="rating" required>
+                                        <option value="">Select Rating</option>
+                                        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                                        <option value="4">⭐⭐⭐⭐ Good</option>
+                                        <option value="3">⭐⭐⭐ Average</option>
+                                        <option value="2">⭐⭐ Poor</option>
+                                        <option value="1">⭐ Very Poor</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reviewText">Your Review</label>
+                                    <textarea id="reviewText" name="reviewText" rows="4" required placeholder="Share your experience with SkyBrix ISP..."></textarea>
+                                </div>
+                                <button type="submit" class="btn">
+                                    <i class="fas fa-star"></i> Submit Review
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Support Page -->
+        <div id="support" class="page">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Technical Support</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <h3>FAQ</h3>
+                            <p>Find quick answers to common questions about our services, billing, and technical issues.</p>
+                            <button class="btn" onclick="toggleFAQ()">View FAQs</button>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Speed Test</h3>
+                            <p>Test your current internet speed to ensure you're getting the performance you're paying for.</p>
+                            <button class="btn" onclick="runSpeedTest()">Run Speed Test</button>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3>Troubleshooting</h3>
+                            <p>Step-by-step guides to resolve common connectivity and performance issues.</p>
+                            <button class="btn" onclick="showTroubleshooting()">Get Help</button>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>Live Chat</h3>
+                            <p>Chat with our technical support team for immediate assistance with your internet issues.</p>
+                            <button class="btn" onclick="startLiveChat()">Start Chat</button>
+                        </div>
+                    </div>
+
+                    <div id="faqSection" class="hidden" style="margin-top: 3rem;">
+                        <div class="form-container">
+                            <h3 style="margin-bottom: 1.5rem; color: #1e3c72;">Frequently Asked Questions</h3>
+                            <div class="faq-item" style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">How do I reset my router?</h4>
+                                <p>Unplug your router for 30 seconds, then plug it back in. Wait 3-5 minutes for it to fully restart.</p>
+                            </div>
+                            <div class="faq-item" style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">Why is my internet slow?</h4>
+                                <p>Check for background downloads, restart your router, or contact support if the issue persists.</p>
+                            </div>
+                            <div class="faq-item" style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">How do I pay my bill?</h4>
+                                <p>You can pay online through our website, M-Pesa, or visit our office. Bills are due on the 5th of each month.</p>
+                            </div>
+                            <div class="faq-item" style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">Can I upgrade my package?</h4>
+                                <p>Yes, you can upgrade anytime. Contact our support team or use the customer portal to change your plan.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="speedTestSection" class="hidden" style="margin-top: 3rem;">
+                        <div class="form-container text-center">
+                            <h3 style="margin-bottom: 1.5rem; color: #1e3c72;">Internet Speed Test</h3>
+                            <div id="speedResults" style="margin: 2rem 0;">
+                                <div style="font-size: 3rem; font-weight: bold; color: #1e3c72;" id="speedDisplay">--</div>
+                                <p>Mbps Download Speed</p>
+                                <div style="margin-top: 1rem;">
+                                    <span style="margin-right: 2rem;">Upload: <strong id="uploadSpeed">--</strong> Mbps</span>
+                                    <span>Ping: <strong id="pingSpeed">--</strong> ms</span>
+                                </div>
+                            </div>
+                            <button class="btn" id="speedTestBtn" onclick="runActualSpeedTest()">
+                                <i class="fas fa-play"></i> Start Test
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePaymentModal()">&times;</span>
+            <h2 style="margin-bottom: 1.5rem; color: #1e3c72;">Complete Your Order</h2>
+            <form id="paymentForm">
+                <div id="packageInfo" style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <h4>Selected Package: <span id="selectedPackage"></span></h4>
+                    <p>Monthly Cost: KSh <span id="selectedPrice"></span></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerName">Full Name</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerEmail">Email Address</label>
+                    <input type="email" id="customerEmail" name="customerEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerAddress">Installation Address</label>
+                    <textarea id="customerAddress" name="customerAddress" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="mpesa">M-Pesa</option>
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="bank">Bank Transfer</option>
+                    </select>
+                </div>
+
+                <div id="mpesaSection" class="hidden">
+                    <div class="form-group">
+                        <label for="mpesaNumber">M-Pesa Number</label>
+                        <input type="tel" id="mpesaNumber" name="mpesaNumber" placeholder="254700123456">
+                    </div>
+                </div>
+
+                <div id="cardSection" class="hidden">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-credit-card"></i> Complete Payment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SkyBrix ISP</h3>
+                    <p>Connecting Kenya to the digital future with reliable, high-speed internet services.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                        <li><a href="#" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" onclick="showPage('packages')">Packages</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('support')">Technical Support</a></li>
+                        <li><a href="#">Customer Portal</a></li>
+                        <li><a href="#">Network Status</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> +254 700 123 456</p>
+                    <p><i class="fas fa-envelope"></i> info@skybrixisp.co.ke</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Moi Avenue, Nairobi</p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #2a5298;">
+                <p>&copy; 2025 SkyBrix ISP LTD. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Functions
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Package Selection and Payment
+        let selectedPackageData = {};
+
+        function selectPackage(packageName, price) {
+            selectedPackageData = { name: packageName, price: price };
+            document.getElementById('selectedPackage').textContent = packageName;
+            document.getElementById('selectedPrice').textContent = price.toLocaleString();
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Payment Method Handler
+        document.getElementById('paymentMethod').addEventListener('change', function() {
+            const method = this.value;
+            document.getElementById('mpesaSection').classList.add('hidden');
+            document.getElementById('cardSection').classList.add('hidden');
+            
+            if (method === 'mpesa') {
+                document.getElementById('mpesaSection').classList.remove('hidden');
+            } else if (method === 'card') {
+                document.getElementById('cardSection').classList.remove('hidden');
+            }
+        });
+
+        // Form Submissions
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            this.reset();
+        });
+
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your review! It will be published after moderation.');
+            this.reset();
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const paymentMethod = formData.get('paymentMethod');
+            
+            if (paymentMethod === 'mpesa') {
+                alert('M-Pesa payment initiated! You will receive a prompt on your phone shortly.');
+            } else if (paymentMethod === 'card') {
+                alert('Processing card payment... Your order has been confirmed!');
+            } else {
+                alert('Bank transfer details sent to your email. Please complete payment within 24 hours.');
+            }
+            
+            closePaymentModal();
+            this.reset();
+        });
+
+        // Support Functions
+        function toggleFAQ() {
+            const faqSection = document.getElementById('faqSection');
+            faqSection.classList.toggle('hidden');
+        }
+
+        function runSpeedTest() {
+            const speedSection = document.getElementById('speedTestSection');
+            speedSection.classList.remove('hidden');
+        }
+
+        function runActualSpeedTest() {
+            const btn = document.getElementById('speedTestBtn');
+            const display = document.getElementById('speedDisplay');
+            const upload = document.getElementById('uploadSpeed');
+            const ping = document.getElementById('pingSpeed');
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
+            btn.disabled = true;
+            
+            // Simulate speed test
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                display.textContent = Math.min(progress, 85).toFixed(1);
+                
+                if (progress >= 85) {
+                    clearInterval(interval);
+                    
+                    // Final results
+                    const downloadSpeed = (Math.random() * 40 + 45).toFixed(1);
+                    const uploadSpeed = (Math.random() * 20 + 25).toFixed(1);
+                    const pingTime = (Math.random() * 20 + 10).toFixed(0);
+                    
+                    display.textContent = downloadSpeed;
+                    upload.textContent = uploadSpeed;
+                    ping.textContent = pingTime;
+                    
+                    btn.innerHTML = '<i class="fas fa-redo"></i> Test Again';
+                    btn.disabled = false;
+                }
+            }, 200);
+        }
+
+        function showTroubleshooting() {
+            alert('Troubleshooting Guide:\n\n1. Check all cable connections\n2. Restart your router\n3. Check for service outages\n4. Contact support if issues persist\n\nFor detailed guides, visit our support portal.');
+        }
+
+        function startLiveChat() {
+            alert('Live chat feature coming soon! For immediate assistance, please call +254 700 123 456 or email support@skybrixisp.co.ke');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('paymentModal');
+            if (e.target === modal) {
+                closePaymentModal();
+            }
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
